@@ -12,12 +12,5 @@ export class GaleryContainerComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.authService.getTestReq()
-      .subscribe(
-        (response) => {
-          console.dir(response);
-        }
-      );
   }
-
 }

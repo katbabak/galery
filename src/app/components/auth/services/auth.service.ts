@@ -12,15 +12,16 @@ export class AuthService {
     return !!localStorage.getItem(TOKEN_NAME);
   }
 
+  static getToken(): string {
+    return localStorage.getItem(TOKEN_NAME);
+  }
+
   constructor(private http: HttpClient) {
   }
 
   getTestReq(): Observable<object | HttpErrorResponse> {
-    let headers: HttpHeaders = new HttpHeaders();
-    headers = headers.set('Accept-Version', 'v1');
-    headers = headers.set('Authorization', 'Client-ID 8b1a0d2820a4b078ee45975088d70b04f75bf91d92abdbdd1dc76726e9f3c3bc');
 
-    return this.http.get('https://api.unsplash.com/photos?page=1', {headers})
+    return this.http.get('/photos?page=1')
       .pipe(
         map((response: any) => {
           console.warn(response);
@@ -32,7 +33,5 @@ export class AuthService {
         })
       );
   }
-
-
 }
 
