@@ -6,5 +6,5 @@
 export const environment = {
   production: false,
 
-  API_BASE_URL: 'http://be.nabazare.galera.dp.ua',
+  API_BASE_URL: 'https://api.unsplash.com/',
 };
