@@ -10,6 +10,7 @@ import { SignUpComponent } from './components/auth/sign-up/sign-up.component';
 import { GaleryContainerComponent } from './components/galery-profile/galery-container/galery-container.component';
 import {AuthService} from './components/auth/services/auth.service';
 import {HttpClientModule} from '@angular/common/http';
+import {AppAuthGuard} from './components/auth/auth.guard';
 
 
 @NgModule({
@@ -25,7 +26,7 @@ import {HttpClientModule} from '@angular/common/http';
     AppRoutingModule,
     HttpClientModule,
   ],
-  providers: [AuthService],
+  providers: [AuthService, AppAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
