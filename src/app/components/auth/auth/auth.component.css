@@ -1,0 +1,13 @@
+.auth_component.wrapper {
+  height: 100vh;
+  width: 100vw;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.content_block {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}

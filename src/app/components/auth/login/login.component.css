@@ -1,0 +1,15 @@
+.button.authorize {
+  max-width: 500px;
+  width: 100%;
+  background-color: #121150;
+  color: #ffffff;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  text-transform: uppercase;
+  border-radius: 30px;
+  border: 2px solid #121150;
+  box-shadow: 7px 11px 54px 0 rgba(0,0,0,0.75);
+  cursor: pointer;
+  outline: none;
+}

@@ -14,7 +14,7 @@ import {environment} from '../environments/environment';
 import {catchError} from 'rxjs/operators';
 import {MatDialog} from '@angular/material';
 import {ErrorPopUpComponent} from './pop-ups/error-pop-up/error-pop-up.component';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Injectable()
 export class AppInterceptor implements HttpInterceptor {
@@ -31,12 +31,8 @@ export class AppInterceptor implements HttpInterceptor {
       .pipe(
         catchError(error => {
           if (error instanceof HttpErrorResponse) {
-            switch (error.status) {
-              case 401:
-                return this.handle401Error(error);
-              default:
+                this.openErrorPopUp(error);
                 return Observable.throw(error);
-            }
           } else {
             throw  error;
           }
@@ -46,10 +42,9 @@ export class AppInterceptor implements HttpInterceptor {
 
   private addTokenAndHeaders(req: HttpRequest<any>, token: string) {
     req = req.clone({
-      url: this.url + req.url,
+      url: (req.url.indexOf('oauth/token') > -1) ? req.url : this.url + req.url,
       headers: req.headers
         .set('Accept-Version', 'v1')
-        // .set('Authorization', 'Client-ID ' + this.access_key),
     });
     if (token) {
       req = req.clone({
@@ -57,20 +52,24 @@ export class AppInterceptor implements HttpInterceptor {
       });
     } else {
       req = req.clone({
-        headers: req.headers.set('Authorizationcon', 'Client-ID ' + this.access_key)
+        headers: req.headers.set('Authorization', 'Client-ID ' + this.access_key)
       });
     }
     return req;
   }
 
   private handle401Error(error: HttpErrorResponse) {
+    this.openErrorPopUp(error);
+    return Observable.throw(error);
+  }
+
+  openErrorPopUp(error: HttpErrorResponse) {
     const dialogRef = this.dialog.open(ErrorPopUpComponent, {
       width: '300px',
-      data: {message: 'For getting this info you need to be authorised!'}
+      data: {message: error.error.error_description}
     });
     dialogRef.afterClosed().subscribe(() => {
       this.router.navigateByUrl('/');
     });
-    return Observable.throw(error);
   }
 }
