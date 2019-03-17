@@ -24,11 +24,7 @@ export class AuthService {
 
   originURL = document.location.origin;
   redirect_uri = encodeURIComponent(this.originURL + '/home');
-  authorizeRedirectUrl = `https://unsplash.com/oauth/authorize
-  ?client_id=${environment.ACCESS_KEY}
-  &redirect_uri=${this.redirect_uri}
-  &response_type=code
-  &scope=public`;
+  authorizeRedirectUrl = `https://unsplash.com/oauth/authorize?client_id=${environment.ACCESS_KEY}&redirect_uri=${this.redirect_uri}&response_type=code&scope=public`;
 
   static isLoggedIn(): boolean {
     return !!localStorage.getItem(TOKEN_NAME);

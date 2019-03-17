@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ErrorPopUpComponent } from './error-pop-up.component';
+import { FavouritesComponent } from './favourites.component';
 
-describe('ErrorPopUpComponent', () => {
-  let component: ErrorPopUpComponent;
-  let fixture: ComponentFixture<ErrorPopUpComponent>;
+describe('FavouritesComponent', () => {
+  let component: FavouritesComponent;
+  let fixture: ComponentFixture<FavouritesComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ErrorPopUpComponent ]
+      declarations: [ FavouritesComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ErrorPopUpComponent);
+    fixture = TestBed.createComponent(FavouritesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
