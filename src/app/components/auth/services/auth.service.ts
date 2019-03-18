@@ -4,6 +4,7 @@ import {catchError, map} from 'rxjs/operators';
 import {Observable} from 'rxjs/Observable';
 import {environment} from '../../../../environments/environment';
 import {Photo} from '../../../models/photo';
+import {Router} from '@angular/router';
 
 export const TOKEN_NAME = 'id_token_galery';
 
@@ -24,7 +25,7 @@ export class AuthService {
 
   originURL = document.location.origin;
   redirect_uri = encodeURIComponent(this.originURL + '/home');
-  authorizeRedirectUrl = `https://unsplash.com/oauth/authorize?client_id=${environment.ACCESS_KEY}&redirect_uri=${this.redirect_uri}&response_type=code&scope=public`;
+  authorizeRedirectUrl = `https://unsplash.com/oauth/authorize?client_id=${environment.ACCESS_KEY}&redirect_uri=${this.redirect_uri}&response_type=code&scope=public+write_likes`;
 
   static isLoggedIn(): boolean {
     return !!localStorage.getItem(TOKEN_NAME);
@@ -34,7 +35,8 @@ export class AuthService {
     return localStorage.getItem(TOKEN_NAME);
   }
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private router: Router) {
   }
 
   getTestReq(): Observable<object | HttpErrorResponse> {
@@ -83,6 +85,12 @@ export class AuthService {
           return Observable.throw(error);
         })
       );
+  }
+
+  logOut() {
+    localStorage.removeItem(TOKEN_NAME);
+    localStorage.removeItem('scope');
+    this.router.navigateByUrl('/auth/login');
   }
 }
 

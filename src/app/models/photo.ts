@@ -31,8 +31,13 @@ export class Links {
   html: string;
   download: string;
   download_location: string;
+  portfolio: string;
 }
 
 export class User {
   username: string;
+  first_name: string;
+  last_name: string;
+  name: string;
+  links: Links;
 }

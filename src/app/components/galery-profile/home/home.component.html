@@ -1,3 +1,6 @@
-<p>
-  home works!
-</p>
+<div class="home_component wrapper">
+	<div class="photos_container">
+		 <app-photo-item *ngFor="let photoItem of photosArray"
+		                  class="photo_item" [photo]='photoItem'></app-photo-item>
+	</div>
+</div>

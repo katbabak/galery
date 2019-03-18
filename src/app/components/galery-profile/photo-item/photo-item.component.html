@@ -1,3 +1,36 @@
-<p>
-  photo-item works!
-</p>
+<div class="photo_item_container" 
+     *ngIf="photo">
+     <div class="author_block mobile_view"><span>
+     	<a [href]="photo.user.links.html">{{photo.user.first_name}} {{photo.user.last_name}}</a></span></div>
+	<div class="photo_block">
+		<div>
+			<img [src]="photo.urls.regular"
+			class="image">
+		</div>
+	</div>
+	<div class="cover_image_block" *ngIf="photo.urls.regular">
+		<div class="cover_content">
+			<div class="like_block">
+				<button mat-button color="warn" 
+				        (click)="likeOrDislikePhoto()">
+					<mat-icon>
+					  <i class="material-icons">{{photo.liked_by_user ? 'favorite' : 'favorite_border'}}</i>
+					</mat-icon>
+					<span>{{photo.likes}}</span>
+				</button>
+			</div>
+			<div class="author_block">
+				<span>by <a [href]="photo.user.links.html">{{photo.user.username}}</a></span>
+			</div>
+		</div>
+	</div>
+	<div class="like_block mobile_view">
+		<button mat-button color="warn"
+		        (click)="likeOrDislikePhoto()">
+					<mat-icon>
+					  <i class="material-icons">{{photo.liked_by_user ? 'favorite' : 'favorite_border'}}</i>
+					</mat-icon>
+					<span>{{photo.likes}}</span>
+				</button>
+	</div>
+</div>

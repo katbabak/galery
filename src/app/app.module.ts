@@ -15,6 +15,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { HomeComponent } from './components/galery-profile/home/home.component';
 import { FavouritesComponent } from './components/galery-profile/favourites/favourites.component';
 import { PhotoItemComponent } from './components/galery-profile/photo-item/photo-item.component';
+import { NavBarComponent } from './components/galery-profile/nav-bar/nav-bar/nav-bar.component';
+import { MenuComponent } from './components/galery-profile/nav-bar/menu/menu.component';
+import { GaleryService} from './components/galery-profile/galery.service';
 
 
 @NgModule({
@@ -27,6 +30,8 @@ import { PhotoItemComponent } from './components/galery-profile/photo-item/photo
     HomeComponent,
     FavouritesComponent,
     PhotoItemComponent,
+    NavBarComponent,
+    MenuComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +42,7 @@ import { PhotoItemComponent } from './components/galery-profile/photo-item/photo
   ],
   providers: [
     AuthService,
+    GaleryService,
     AppAuthGuard,
     {
       provide: HTTP_INTERCEPTORS,

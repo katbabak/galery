@@ -1,0 +1,19 @@
+.galery_container.wrapper {
+	position: relative;
+	background-color: #fffff;
+	display: flex;
+    flex-direction: column;
+	
+}
+
+.nav_bar.wrapper {
+	width: 100vw;
+	position: fixed;
+	z-index: 1;
+	box-shadow: 4px -1px 30px 2px rgba(0,0,0,0.33);
+	background-color: rgba(255,255,255,.9);
+}
+
+.content.wrapper {
+	margin: 70px 20px 20px;
+}

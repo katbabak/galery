@@ -34,6 +34,7 @@ export class AppInterceptor implements HttpInterceptor {
                 this.openErrorPopUp(error);
                 return Observable.throw(error);
           } else {
+            this.openErrorPopUp(error);
             throw  error;
           }
         })
