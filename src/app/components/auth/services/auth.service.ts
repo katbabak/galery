@@ -5,12 +5,13 @@ import {Observable} from 'rxjs/Observable';
 import {environment} from '../../../../environments/environment';
 import {Photo} from '../../../models/photo';
 import {Router} from '@angular/router';
+import {User} from '../../../models/photo';
 
 export const TOKEN_NAME = 'id_token_galery';
 
 enum APIs {
-  GET_ALL_PHOTOS = 'photos?page=1',
   GET_RANDOM_PHOTO = '/photos/random',
+  GET_CURRENT_USER_INFO = 'me',
 }
 
 export class TokenResponse {
@@ -25,8 +26,9 @@ export class AuthService {
 
   originURL = document.location.origin;
   redirect_uri = encodeURIComponent(this.originURL + '/home');
-  authorizeRedirectUrl = `https://unsplash.com/oauth/authorize?client_id=${environment.ACCESS_KEY}&redirect_uri=${this.redirect_uri}&response_type=code&scope=public+write_likes`;
+  authorizeRedirectUrl = `https://unsplash.com/oauth/authorize?client_id=${environment.ACCESS_KEY}&redirect_uri=${this.redirect_uri}&response_type=code&scope=public+write_likes+read_user`;
 
+   currentUser: User;
   static isLoggedIn(): boolean {
     return !!localStorage.getItem(TOKEN_NAME);
   }
@@ -39,30 +41,13 @@ export class AuthService {
               private router: Router) {
   }
 
-  getTestReq(): Observable<object | HttpErrorResponse> {
-
-    return this.http.get(APIs.GET_ALL_PHOTOS)
-      .pipe(
-        map((response: any) => {
-          console.warn(response);
-          return response;
-        }),
-        catchError((error: HttpErrorResponse) => {
-          console.log(error);
-          throw error;
-        })
-      );
-  }
-
   getRandomPhoto(): Observable<Photo | HttpErrorResponse> {
     return this.http.get(APIs.GET_RANDOM_PHOTO)
       .pipe(
         map((response: Photo) => {
-          console.warn(response);
           return response;
         }),
         catchError((error: HttpErrorResponse) => {
-          console.log(error);
           return Observable.throw(error);
         })
       );
@@ -85,6 +70,18 @@ export class AuthService {
           return Observable.throw(error);
         })
       );
+  }
+
+  getCurrentUserInfo(): Observable<User|HttpErrorResponse> {
+   return this.http.get(APIs.GET_CURRENT_USER_INFO)
+   .pipe(
+     map((response: User) => {
+       this.currentUser = response;
+       return response;
+     }),
+     catchError((error: HttpErrorResponse) => {
+          return Observable.throw(error);
+        }))
   }
 
   logOut() {

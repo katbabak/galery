@@ -18,6 +18,7 @@ import { PhotoItemComponent } from './components/galery-profile/photo-item/photo
 import { NavBarComponent } from './components/galery-profile/nav-bar/nav-bar/nav-bar.component';
 import { MenuComponent } from './components/galery-profile/nav-bar/menu/menu.component';
 import { GaleryService} from './components/galery-profile/galery.service';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { GaleryService} from './components/galery-profile/galery.service';
     AppRoutingModule,
     HttpClientModule,
     MaterialModule,
+    InfiniteScrollModule,
   ],
   providers: [
     AuthService,

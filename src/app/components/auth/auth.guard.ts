@@ -37,12 +37,17 @@ export class AppAuthGuard implements CanActivate {
           localStorage.setItem(TOKEN_NAME, response.access_token);
           localStorage.setItem('scope', response.scope);
           this.router.navigate(['/home']);
+          this.getUserInfo();
           return true;
         },
         (error: HttpErrorResponse) => {
           return false;
         }
       );
+  }
+
+  getUserInfo() {
+    this.authService.getCurrentUserInfo().subscribe();
   }
 
   openErrorPopUp(message: string) {

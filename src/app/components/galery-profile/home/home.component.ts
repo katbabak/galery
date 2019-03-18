@@ -9,9 +9,9 @@ import { Photo } from '../../../models/photo';
 })
 export class HomeComponent implements OnInit {
 
-  pageNumber = 0;
+  pageNumber = 1;
   photosPerPage = 20;
-  photosArray: Photo[];
+  photosArray: Photo[] = [];
 
   constructor(private galeryService: GaleryService) { }
 
@@ -20,15 +20,16 @@ export class HomeComponent implements OnInit {
   }
 
   getPhotos(pageNumber: number, photosPerPage: number) {
-  // this.galeryService.getPhotos(pageNumber, photosPerPage)
-  // .subscribe(
-  // 	(response: Photo[]) => {
-  // 		console.dir(response);
-  // 		this.photosArray = response;
-  // 		localStorage.setItem('photos', JSON.stringify(response));
-  // 	});
-  this.photosArray = JSON.parse(localStorage.getItem('photos'));
-  console.log(this.photosArray);
+  this.galeryService.getPhotos(pageNumber, photosPerPage)
+  .subscribe(
+  	(response: Photo[]) => {
+  		this.photosArray = this.photosArray.concat(response);
+  	});
+  }
+
+  onScroll() {
+    this.pageNumber++;
+    this.getPhotos(this.pageNumber, this.photosPerPage);
   }
 
 }

@@ -28,8 +28,8 @@ export class PhotoItemComponent implements OnInit {
    this.galeryService.likePhoto(photoId)
    .subscribe(
    	(res: Photo) => {
-   		console.log(res);
-   		this.photo = res;
+   		this.photo.liked_by_user = true;
+   		this.photo.likes += 1;
    	})
   }
 
@@ -37,8 +37,8 @@ export class PhotoItemComponent implements OnInit {
   this.galeryService.dislikePhoto(photoId)
    .subscribe(
    	(res: Photo) => {
-   		console.log(res);
-   		this.photo = res;
+   		this.photo.liked_by_user = false;
+   		this.photo.likes -= 1;
    	})
   }
 
