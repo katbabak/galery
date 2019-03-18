@@ -1,0 +1,24 @@
+.nav_bar.container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+    padding: 10px;
+    height: 40px;
+}
+
+.nav_bar .logo_block {
+    margin-left: 5px;
+}
+
+.nav_bar .logo_block .logo_sign {
+	font-family: 'Sniglet', cursive;
+	font-weight: bold;
+	font-size: 2em;
+}
+
+@media(max-width: 768px) {
+	.nav_bar .logo_block .logo_sign {
+		font-size: 1.3em;
+	}
+}

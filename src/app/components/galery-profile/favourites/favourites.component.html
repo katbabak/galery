@@ -1,0 +1,10 @@
+<div class="favourite_component wrapper">
+	<div class="photos_container"
+	     infiniteScroll
+        [infiniteScrollDistance]="2"
+        [infiniteScrollThrottle]="50"
+         (scrolled)="onScroll()">
+		 <app-photo-item *ngFor="let photoItem of photosArray"
+		                  class="photo_item" [photo]='photoItem'></app-photo-item>
+	</div>
+</div>

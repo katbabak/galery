@@ -1,0 +1,32 @@
+<div class="menu_container">
+	<div class="tabs desktop_view">
+	  <div class="link" routerLink="/home" routerLinkActive="active">Home</div>
+	  <div class="link" routerLink="/favourites" routerLinkActive="active">Favourites</div>
+	</div>
+	<div class="tabs mobile_view">
+	  <div class="link"  routerLink="/home" routerLinkActive="active">
+		<button mat-button>
+			<mat-icon>
+		       <i class="material-icons">home</i>
+			</mat-icon>
+		</button>
+	  </div>
+	  <div class="link"  routerLink="/favourites" routerLinkActive="active">
+		<button mat-button>
+			<mat-icon>
+		       <i class="material-icons">grade</i>
+			</mat-icon>
+		</button>
+	  </div>
+	</div>
+	<div class="user_menu">
+		<button mat-button (click)="logOut()">
+			<mat-icon>
+				<i class="material-icons">
+                  exit_to_app
+                </i>
+			</mat-icon> 
+			
+		</button>
+	</div>
+</div>

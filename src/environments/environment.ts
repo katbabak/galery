@@ -4,5 +4,9 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+
+  API_BASE_URL: 'https://api.unsplash.com/',
+  ACCESS_KEY: '8b1a0d2820a4b078ee45975088d70b04f75bf91d92abdbdd1dc76726e9f3c3bc',
+  SECRET_KEY: '510190872a0bb8f71e9c410fb9d45ee9feef7824c921b3f2784b01de434b9923',
 };
